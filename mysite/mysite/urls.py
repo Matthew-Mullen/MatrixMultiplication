@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.urls import path, include
+from backend.views import ReceiveInput
+import backend
+from backend import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('compute/',views.Compute.as_view())
 ]

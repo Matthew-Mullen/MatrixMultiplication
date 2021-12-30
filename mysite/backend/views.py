@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 import numpy
 
-class ReceiveInput(GenericAPIView):
+class Compute(GenericAPIView):
     def post(request:HttpRequest):
         data = JSONParser.parse(request) if request.data is str else request.data
         if not data.__contains__("matrix1") or not data.__contains__("numRows1") or not data.__contains__("numCols1"):
@@ -29,4 +29,4 @@ class ReceiveInput(GenericAPIView):
         intMat2 = numpy.array([map(int,i) for i in matrix2])
         res=numpy.matmul(intMat1,intMat2).tolist()
         data={'result':res}
-        return Response(res,status=200)
+        return Response(json.dumps(data),status=200)
