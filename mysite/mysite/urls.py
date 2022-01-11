@@ -18,8 +18,10 @@ from django.urls import path
 from django.urls import path, include
 from backend.views import ReceiveInput
 import backend
-from backend import views
+from backend import views as backendViews
+import frontend
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('compute/',views.Compute.as_view())
+    path('compute/<str:op>',backendViews.Compute.as_view()),
+    path('user/<str:user_id>/portfolioAPI',backendViews.Portfolio.as_view()),
 ]
